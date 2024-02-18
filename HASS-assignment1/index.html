@@ -1,22 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Assignment 1</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>PSI Readings Table</title>
     <style>
-        table, th, td {
-            border: 1px solid black;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+        }
+        table {
+            width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
         th, td {
-            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #444;
+        }
+        tr:nth-child(even) {
+            background-color: #555;
+        }
+        tr:nth-child(odd) {
+            background-color: #666;
+        }
+        .updated-time {
+            text-align: right;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <h1>PSI Readings</h1>
-    <div id="psiReadings"></div>
+    <div class="updated-time"></div>
+    <table id="psiTable">
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>National</th>
+                <th>Central</th>
+                <th>West</th>
+                <th>East</th>
+                <th>North</th>
+                <th>South</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- PSI data rows will be inserted here -->
+        </tbody>
+    </table>
 
     <script>
         // Function to fetch PSI data and display in a table
@@ -25,33 +61,40 @@
                 .then(response => response.json())
                 .then(data => {
                     const readings = data.items[0].readings;
-                    const table = document.createElement('table');
-                    const headerRow = table.insertRow();
-                    const valueRow = table.insertRow();
+                    const updateTimestamp = data.items[0].update_timestamp;
+                    const psiTable = document.getElementById('psiTable').getElementsByTagName('tbody')[0];
+                    const updatedTimeDiv = document.querySelector('.updated-time');
 
-                    // Creating table headers
-                    Object.keys(readings).forEach(key => {
-                        const th = document.createElement('th');
-                        th.textContent = key;
-                        headerRow.appendChild(th);
-                    });
+                    // Clear previous data
+                    psiTable.innerHTML = '';
+                    updatedTimeDiv.innerHTML = '';
 
-                    // Inserting readings values
-                    Object.values(readings).forEach(value => {
-                        const td = document.createElement('td');
-                        td.textContent = typeof value === 'object' ? value.national : value;
-                        valueRow.appendChild(td);
-                    });
+                    // Fill in the updated time
+                    updatedTimeDiv.textContent = `Last updated ${new Date(updateTimestamp).toLocaleString()}`;
 
-                    // Append table to the div
-                    document.getElementById('psiReadings').appendChild(table);
+                    // Creating table rows for each reading
+                    for (let key in readings) {
+                        const newRow = psiTable.insertRow();
+                        const reading = readings[key];
+
+                        newRow.innerHTML = `
+                            <td>${key.replace(/_/g, ' ')}</td>
+                            <td>${reading.national}</td>
+                            <td>${reading.central}</td>
+                            <td>${reading.west}</td>
+                            <td>${reading.east}</td>
+                            <td>${reading.north}</td>
+                            <td>${reading.south}</td>
+                        `;
+                    }
                 })
                 .catch(error => console.error('Error fetching PSI data:', error));
         }
 
         // Call fetchPSIData function when the page loads
-        window.onload = fetchPSIData;
+        window.addEventListener('DOMContentLoaded', fetchPSIData);
     </script>
 </body>
 </html>
+
 
