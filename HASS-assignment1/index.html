@@ -1,100 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>PSI Readings Table</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #333;
-            color: #fff;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            text-align: center;
-            padding: 8px;
-        }
-        th {
-            background-color: #444;
-        }
-        tr:nth-child(even) {
-            background-color: #555;
-        }
-        tr:nth-child(odd) {
-            background-color: #666;
-        }
-        .updated-time {
-            text-align: right;
-            margin-top: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSI Data Display</title>
+<style>
+/* Add your CSS styling here */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* You can add more CSS or include a framework like Bootstrap for styling */
+</style>
 </head>
 <body>
-    <h1>PSI Readings</h1>
-    <div class="updated-time"></div>
-    <table id="psiTable">
-        <thead>
-            <tr>
-                <th>Metric</th>
-                <th>National</th>
-                <th>Central</th>
-                <th>West</th>
-                <th>East</th>
-                <th>North</th>
-                <th>South</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- PSI data rows will be inserted here -->
-        </tbody>
-    </table>
 
-    <script>
-        // Function to fetch PSI data and display in a table
-        function fetchPSIData() {
-            fetch('https://api.data.gov.sg/v1/environment/psi')
-                .then(response => response.json())
-                .then(data => {
-                    const readings = data.items[0].readings;
-                    const updateTimestamp = data.items[0].update_timestamp;
-                    const psiTable = document.getElementById('psiTable').getElementsByTagName('tbody')[0];
-                    const updatedTimeDiv = document.querySelector('.updated-time');
+<h2>PSI Data Readings</h2>
+<p id="timestamp">Timestamp: Loading...</p>
+<table>
+<thead>
+    <tr>
+        <th>Metric</th>
+        <th>National</th>
+        <th>Central</th>
+        <th>West</th>
+        <th>East</th>
+        <th>North</th>
+        <th>South</th>
+    </tr>
+</thead>
+<tbody id="psi-data">
+    <!-- Data will be inserted here by JavaScript -->
+</tbody>
+</table>
 
-                    // Clear previous data
-                    psiTable.innerHTML = '';
-                    updatedTimeDiv.innerHTML = '';
+<script>
+// JavaScript to fetch data from the API and populate the table
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://api.data.gov.sg/v1/environment/psi')
+    .then(response => response.json())
+    .then(data => {
+        const items = data.items[0];
+        const readings = items.readings;
+        const timestamp = items.update_timestamp;
+        document.getElementById('timestamp').textContent = `Timestamp: ${timestamp}`;
 
-                    // Fill in the updated time
-                    updatedTimeDiv.textContent = `Last updated ${new Date(updateTimestamp).toLocaleString()}`;
-
-                    // Creating table rows for each reading
-                    for (let key in readings) {
-                        const newRow = psiTable.insertRow();
-                        const reading = readings[key];
-
-                        newRow.innerHTML = `
-                            <td>${key.replace(/_/g, ' ')}</td>
-                            <td>${reading.national}</td>
-                            <td>${reading.central}</td>
-                            <td>${reading.west}</td>
-                            <td>${reading.east}</td>
-                            <td>${reading.north}</td>
-                            <td>${reading.south}</td>
-                        `;
-                    }
-                })
-                .catch(error => console.error('Error fetching PSI data:', error));
+        // Construct table rows for each reading
+        const psiDataElement = document.getElementById('psi-data');
+        psiDataElement.innerHTML = ''; // Clear existing data
+        
+        // Iterate over the readings object to create table rows
+        for (const [key, value] of Object.entries(readings)) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${key.replace(/_/g, ' ')}</td>
+                <td>${value.national}</td>
+                <td>${value.central}</td>
+                <td>${value.west}</td>
+                <td>${value.east}</td>
+                <td>${value.north}</td>
+                <td>${value.south}</td>
+            `;
+            psiDataElement.appendChild(row);
         }
+    })
+    .catch(error => {
+        console.error('Error fetching data: ', error);
+    });
+});
+</script>
 
-        // Call fetchPSIData function when the page loads
-        window.addEventListener('DOMContentLoaded', fetchPSIData);
-    </script>
 </body>
 </html>
-
-
