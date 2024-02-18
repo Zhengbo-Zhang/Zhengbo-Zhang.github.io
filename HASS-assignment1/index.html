@@ -1,1 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Assignment 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>PSI Readings</h1>
+    <div id="psiReadings"></div>
+
+    <script>
+        // Function to fetch PSI data and display in a table
+        function fetchPSIData() {
+            fetch('https://api.data.gov.sg/v1/environment/psi')
+                .then(response => response.json())
+                .then(data => {
+                    const readings = data.items[0].readings;
+                    const table = document.createElement('table');
+                    const headerRow = table.insertRow();
+                    const valueRow = table.insertRow();
+
+                    // Creating table headers
+                    Object.keys(readings).forEach(key => {
+                        const th = document.createElement('th');
+                        th.textContent = key;
+                        headerRow.appendChild(th);
+                    });
+
+                    // Inserting readings values
+                    Object.values(readings).forEach(value => {
+                        const td = document.createElement('td');
+                        td.textContent = typeof value === 'object' ? value.national : value;
+                        valueRow.appendChild(td);
+                    });
+
+                    // Append table to the div
+                    document.getElementById('psiReadings').appendChild(table);
+                })
+                .catch(error => console.error('Error fetching PSI data:', error));
+        }
+
+        // Call fetchPSIData function when the page loads
+        window.onload = fetchPSIData;
+    </script>
+</body>
+</html>
 
