@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSI Data Display</title>
 <style>
-/* Basic reset for styling consistency */
+
 * {
     margin: 0;
     padding: 0;
@@ -55,18 +55,18 @@ tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Hover effect for rows */
+
 tr:hover {
     background-color: #e2e2e2;
 }
 
-/* Timestamp styling */
+
 #timestamp {
     text-align: right;
     margin-bottom: 10px;
 }
 
-/* Responsive table */
+
 @media screen and (max-width: 600px) {
     table {
         width: 100%;
@@ -79,7 +79,7 @@ tr:hover {
 <body>
 
 <div class="container">
-    <h1>Singapore PSI Level (healthy)</h1>
+    <h1>Singapore PSI table</h1>
     <p id="timestamp">Last updated: Loading...</p>
     <table>
     <thead>
@@ -93,13 +93,13 @@ tr:hover {
         </tr>
     </thead>
     <tbody id="psi-data">
-        <!-- Data will be inserted here by JavaScript -->
+
     </tbody>
     </table>
 </div>
 
 <script>
-// JavaScript to fetch data from the API and populate the table
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch('https://api.data.gov.sg/v1/environment/psi')
     .then(response => response.json())
@@ -109,11 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const timestamp = items.update_timestamp;
         document.getElementById('timestamp').textContent = `Last updated: ${new Date(timestamp).toLocaleString()}`;
 
-        // Construct table rows for each reading
+
         const psiDataElement = document.getElementById('psi-data');
-        psiDataElement.innerHTML = ''; // Clear existing data
+        psiDataElement.innerHTML = ''; 
         
-        // Iterate over the readings object to create table rows
+
         for (const [key, value] of Object.entries(readings)) {
             const row = document.createElement('tr');
             row.innerHTML = `
