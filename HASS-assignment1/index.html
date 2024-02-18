@@ -5,47 +5,98 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PSI Data Display</title>
 <style>
-/* Add your CSS styling here */
+/* Basic reset for styling consistency */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #ddd;
 }
 
 th, td {
-    padding: 8px;
+    padding: 12px 15px;
     text-align: left;
 }
 
 th {
     background-color: #f2f2f2;
+    color: #333;
 }
 
-/* You can add more CSS or include a framework like Bootstrap for styling */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect for rows */
+tr:hover {
+    background-color: #e2e2e2;
+}
+
+/* Timestamp styling */
+#timestamp {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+/* Responsive table */
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+}
 </style>
 </head>
 <body>
 
-<h2>Singapore PSI table</h2>
-<p id="timestamp">Timestamp: Loading...</p>
-<table>
-<thead>
-    <tr>
-        <th>Metric</th>
-        <th>Central</th>
-        <th>West</th>
-        <th>East</th>
-        <th>North</th>
-        <th>South</th>
-    </tr>
-</thead>
-<tbody id="psi-data">
-    <!-- Data will be inserted here by JavaScript -->
-</tbody>
-</table>
+<div class="container">
+    <h1>Singapore PSI Level (healthy)</h1>
+    <p id="timestamp">Last updated: Loading...</p>
+    <table>
+    <thead>
+        <tr>
+            <th>Metric</th>
+            <th>West</th>
+            <th>East</th>
+            <th>Central</th>
+            <th>South</th>
+            <th>North</th>
+        </tr>
+    </thead>
+    <tbody id="psi-data">
+        <!-- Data will be inserted here by JavaScript -->
+    </tbody>
+    </table>
+</div>
 
 <script>
 // JavaScript to fetch data from the API and populate the table
@@ -56,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const items = data.items[0];
         const readings = items.readings;
         const timestamp = items.update_timestamp;
-        document.getElementById('timestamp').textContent = `Timestamp: ${timestamp}`;
+        document.getElementById('timestamp').textContent = `Last updated: ${new Date(timestamp).toLocaleString()}`;
 
         // Construct table rows for each reading
         const psiDataElement = document.getElementById('psi-data');
@@ -66,12 +117,12 @@ document.addEventListener('DOMContentLoaded', function() {
         for (const [key, value] of Object.entries(readings)) {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${key.replace(/_/g, ' ')}</td>
-                <td>${value.central}</td>
+                <td>${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</td>
                 <td>${value.west}</td>
                 <td>${value.east}</td>
-                <td>${value.north}</td>
+                <td>${value.central}</td>
                 <td>${value.south}</td>
+                <td>${value.north}</td>
             `;
             psiDataElement.appendChild(row);
         }
