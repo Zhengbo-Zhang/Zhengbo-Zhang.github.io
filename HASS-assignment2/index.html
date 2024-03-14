@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSI Data Display</title>
+<style>
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
+tr:hover {
+    background-color: #e2e2e2;
+}
+
+
+#timestamp {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+
+@media screen and (max-width: 600px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Singapore PSI table</h1>
+    <p id="timestamp">Last updated: Loading...</p>
+    <table>
+    <thead>
+        <tr>
+            <th>Metric</th>
+            <th>West</th>
+            <th>East</th>
+            <th>Central</th>
+            <th>South</th>
+            <th>North</th>
+        </tr>
+    </thead>
+    <tbody id="psi-data">
+
+    </tbody>
+    </table>
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('https://api.data.gov.sg/v1/environment/psi')
+    .then(response => response.json())
+    .then(data => {
+        const items = data.items[0];
+        const readings = items.readings;
+        const timestamp = items.update_timestamp;
+        document.getElementById('timestamp').textContent = `Last updated: ${new Date(timestamp).toLocaleString()}`;
+
+
+        const psiDataElement = document.getElementById('psi-data');
+        psiDataElement.innerHTML = ''; 
+        
+
+        for (const [key, value] of Object.entries(readings)) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</td>
+                <td>${value.west}</td>
+                <td>${value.east}</td>
+                <td>${value.central}</td>
+                <td>${value.south}</td>
+                <td>${value.north}</td>
+            `;
+            psiDataElement.appendChild(row);
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching data: ', error);
+    });
+});
+</script>
+
+</body>
+</html>
