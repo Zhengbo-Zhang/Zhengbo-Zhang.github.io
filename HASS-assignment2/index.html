@@ -1,137 +1,161 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PSI Data Display</title>
-<style>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Visualization Critiques | HASS-assignment2</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Visualization Critiques" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="https://markhh.com/HASS-assignment2/" />
+<meta property="og:url" content="https://markhh.com/HASS-assignment2/" />
+<meta property="og:site_name" content="HASS-assignment2" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Visualization Critiques" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","headline":"Visualization Critiques","name":"HASS-assignment2","url":"https://markhh.com/HASS-assignment2/"}</script>
+<!-- End Jekyll SEO tag -->
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    padding: 20px;
-}
+    <link rel="stylesheet" href="/HASS-assignment2/assets/css/style.css?v=44d954e771302965fb544547e0594d5e44d68288">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-    color: #333;
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+<!-- Setup Google Analytics -->
 
 
-tr:hover {
-    background-color: #e2e2e2;
-}
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/HASS-assignment2/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://markhh.com/HASS-assignment2/">HASS-assignment2</a></h1>
+      
+
+      <h1 id="visualization-critiques">Visualization Critiques</h1>
+
+<p><em>02.526 Interactive Data Visualization (2023) Assignment 2</em></p>
+
+<p>by Mark He Huang (1004561)</p>
+
+<h2 id="-1-the-growing-worldwide-streaming-tv-subscribers"># 1: The Growing Worldwide Streaming TV Subscribers</h2>
+
+<blockquote>
+  <p><img src="/HASS-assignment2/assets/streaming_tv_subs.png" alt="" /></p>
+
+  <p>Source: <a href="https://www.economist.com/graphic-detail/2023/02/08/disney-will-cut-7000-jobs-as-it-restructures-its-business">Disney will cut 7,000 jobs as it restructures its business</a> by <a href="https://www.economist.com/">The Economist</a>.</p>
+</blockquote>
+
+<h3 id="whats-good-about-it">What’s good about it?</h3>
+
+<ul>
+  <li>Visually pleasing at a glance.</li>
+  <li>Effectively convey the simple message that the total number of subscribers is growing over time.</li>
+</ul>
+
+<h3 id="whats-bad-about-it">What’s bad about it?</h3>
+
+<ul>
+  <li>Data
+    <ul>
+      <li>Inconsistent data source. As labelled by the chart, the number of subscribers from “Amazon Prime Video” is counted with “Active viewers only” while others are not for no apparent reason.</li>
+    </ul>
+  </li>
+  <li>Idiom
+    <ul>
+      <li><strong>Ordering</strong>: The data is not ordered in any way. It is not ordered by the initial market share nor the latest market share.</li>
+      <li><strong>Color Scheme</strong>: For no apparent reason, the colors chosen for “Peacock”, “Apple TV+”, and “Paramount+” are just different shades of grey, while other services have a more vibrant color scheme.</li>
+      <li><strong>Labels</strong>: Some categorical labels appear at the legend, while others appear on the graph itself. This inconsistency makes it harder to read the graph.</li>
+      <li><strong>Labels</strong>: There is no data labels for each item in the y-axis. This makes it harder to read the graph. For example, it is very hard to guess the number of subscribers for “Netflix” and the amount of changes along the years.</li>
+      <li><strong>Graph Type</strong>: The graph type, stacked area chart, is only best at showing a general trend of the sum of all the data. It is not suitable for showing the changes of each individual data item. So this graph type presents very little information. It is not so straightforward to see whether the growth of the total subscribers is due to the growth of every streaming service or mainly due to a significant growth of one or two services. This is critical information because the former indicates that the market is growing as a whole, while the latter indicates that the market’s growth is not generalizable to all services and the reason for the growth might be very specific to the top-performing service.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="possible-improvements">Possible Improvements</h3>
+
+<ul>
+  <li><strong>Data Source</strong>: Use consistent way of quantification for all services.</li>
+  <li><strong>Ordering</strong>: Order the data by the final market share.</li>
+  <li><strong>Color Scheme</strong>: The color scheme could be improved by using a more vibrant color scheme for all services. Or, we can use similar but distinguishable colors for services that are owned by the same parent company.</li>
+  <li><strong>Labels</strong>: Use a consistent way of labelling. Also, label the numerical values for each item in the y-axis.</li>
+  <li><strong>Graph Type</strong>: Use a more suitable graph type. For example, a stacked bar chart or a grouped bar chart would be more suitable for this data. It will be easier to label the values and changes for each individual service in each year.</li>
+</ul>
+
+<h3 id="main-design-goals">Main Design Goals</h3>
+
+<ul>
+  <li><strong>Present More Useful Information</strong> (without sacrificing the visual appeal)</li>
+  <li><strong>Improve Consistency</strong> (w.r.t. data source, ordering, color scheme, to avoid confusion)</li>
+  <li><strong>Improve Intuitiveness and Readability</strong> (w.r.t. trend, changes, and values)</li>
+</ul>
+
+<h3 id="a-good-example">A Good Example</h3>
+
+<p><a href="https://observablehq.com/@mbostock/revenue-by-music-format-1973-2018"><img src="/HASS-assignment2/assets/stacked_bars.png" alt="" /></a></p>
+
+<h3 id="inspirations">Inspirations</h3>
+
+<ul>
+  <li>Use Similar but Distinct Colors to Group Streaming Services by Parent Company</li>
+  <li>Use a Stacked Bar Chart to clearly show not only the total number of subscribers but also the changes of each individual service.</li>
+  <li>Use interactive tooltips to show the exact values of each item in the graph if there is space constraint.</li>
+  <li>Label the service names in the legend in a consistent way that makes the reader easily to establish visual association between the legend and the graph.</li>
+</ul>
+
+<h2 id="-2-visualization-of-public-companies-financial-reports"># 2: Visualization of Public Companies’ Financial Reports</h2>
+
+<blockquote>
+  <p><img src="/HASS-assignment2/assets/GOOG.png" alt="" /></p>
+
+  <p><img src="/HASS-assignment2/assets/MSFT.png" alt="" /></p>
+
+  <p><img src="/HASS-assignment2/assets/NIKE.jpg" alt="" /></p>
+
+  <p>Source: <a href="https://substack.com/profile/107549880-app-economy-insights">App Economy Insights</a> by <a href="https://www.linkedin.com/in/bertrandseguin/">Bertrand Seguin</a></p>
+</blockquote>
+
+<h3 id="whats-good-about-it-1">What’s good about it?</h3>
+
+<p>From the needs standpoint, the visualizations are very effective in conveying the <strong>key ratios</strong> that investors usually care the most about, which are:</p>
+
+<ul>
+  <li>Gross margin = (Revenue - COGS) / Revenue</li>
+  <li>Operating margin = (Revenue - COGS - Operating expenses) / Revenue</li>
+  <li>Net margin = (Revenue - COGS - Operating expenses - Other expenses) / Revenue</li>
+</ul>
+
+<p>The custom visualization made it very straightforward to get the sense of the key ratios for each company. It is also very intuitive to understand the meaning of each ratio without any additional explanation.</p>
+
+<h3 id="whats-bad-about-it-1">What’s bad about it?</h3>
+
+<p>Disclaimer: This is a really great visualization in so many perspectives, I am just nitpicking now.</p>
+
+<ul>
+  <li><strong>Color Scheme</strong>: Although the colors on the right side of the “Revenue” chart have an obvious semantic meaning (green for profit and red for loss), the colors on the left side are somewhat arbitrary. They may differ depending on the category, or they may be grouped for unclear reasons, or they may be monotonous to match the company logo color. While this inconsistency may be due to aesthetic considerations, having consistent color coding rules would likely improve the effectiveness of the visualization.</li>
+  <li><strong>Labels</strong>: Although the chart presents a very intuitive visual sense of the <strong>key ratios</strong>, viewers may still be interested in the precise percentage values of the ratios at each hierarchical levels. For example, in the first chart (Alphabet/Google), the percentage of the R&amp;D expenses in the Operating expenses is not labeled. Viewers has to do manual calculation to get the precise values while the visualization clearly has the space to present the values. This is a missed opportunity to make the visualization even more effective.</li>
+</ul>
+
+<h3 id="possible-improvements-1">Possible Improvements</h3>
+
+<ul>
+  <li><strong>Color Scheme</strong>: Use consistent color coding rules for colors on the left side of the chart.</li>
+  <li><strong>Labels</strong>: Label the percentage values of the ratios at each hierarchical levels.</li>
+  <li><strong>Interactivity</strong>: From investors’ needs standpoint, conducting comparison across companies is very important. However, the current visualization is company-specific, which means that the viewer has to switch between different visualizations to compare the ratios across companies and the scale of the charts are different for different companies. This makes it harder to compare the revenue, COGS, and other expenses across companies. To improve this, add interactivity to the visualization so that the viewer can easily switch between different companies and normalize the scale of the charts when comparing across companies.</li>
+</ul>
 
 
-#timestamp {
-    text-align: right;
-    margin-bottom: 10px;
-}
-
-
-@media screen and (max-width: 600px) {
-    table {
-        width: 100%;
-        display: block;
-        overflow-x: auto;
-    }
-}
-</style>
-</head>
-<body>
-
-<div class="container">
-    <h1>Singapore PSI table</h1>
-    <p id="timestamp">Last updated: Loading...</p>
-    <table>
-    <thead>
-        <tr>
-            <th>Metric</th>
-            <th>West</th>
-            <th>East</th>
-            <th>Central</th>
-            <th>South</th>
-            <th>North</th>
-        </tr>
-    </thead>
-    <tbody id="psi-data">
-
-    </tbody>
-    </table>
-</div>
-
-<script>
-
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('https://api.data.gov.sg/v1/environment/psi')
-    .then(response => response.json())
-    .then(data => {
-        const items = data.items[0];
-        const readings = items.readings;
-        const timestamp = items.update_timestamp;
-        document.getElementById('timestamp').textContent = `Last updated: ${new Date(timestamp).toLocaleString()}`;
-
-
-        const psiDataElement = document.getElementById('psi-data');
-        psiDataElement.innerHTML = ''; 
-        
-
-        for (const [key, value] of Object.entries(readings)) {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</td>
-                <td>${value.west}</td>
-                <td>${value.east}</td>
-                <td>${value.central}</td>
-                <td>${value.south}</td>
-                <td>${value.north}</td>
-            `;
-            psiDataElement.appendChild(row);
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching data: ', error);
-    });
-});
-</script>
-
-</body>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
 </html>
